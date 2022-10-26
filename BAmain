@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+
+class BankAccountMain{
+   public static void main(String[] args) throws IOException{
+       BufferedReader reader = new BufferedReader(new FileReader("account.txt"));
+       int n = Integer.parseInt(reader.readLine());
+       BankAccount[] bank = new BankAccount[n];
+       int min = Integer.MAX_VALUE;
+       int max = Integer.MIN_VALUE;
+       double sum = 0.0;
+       for (int x = 0; x < n; x++){
+           String[] s = reader.readLine().split(" ");
+           int bal = Integer.parseInt(s[1]);
+           BankAccount b = new BankAccount(s[0],Integer.parseInt(s[1]));
+           min = Math.min(min,bal);
+           max = Math.max(max,bal);
+           sum += bal;
+           bank[x] = b;
+           x += 1;
+       }
+       System.out.println("The maximum value is:   "+max);
+       System.out.println("The minimum value is:   "+min);
+       System.out.println("The average value is:   "+sum/n);
+   }
+}
+
+class BankAccount{
+   String name;
+   int balance;
+   public BankAccount(String n,int b){
+       name    = n;
+       balance = b;
+   }
+}
+
